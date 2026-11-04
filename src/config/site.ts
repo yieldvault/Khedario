@@ -7,7 +7,7 @@ const v = (x: unknown) => (typeof x === 'string' ? x.trim() : '');
 
 export const site = {
   name: 'Khedar',
-  legalName: '', // UNCONFIGURED: registered legal entity name
+  legalName: '', // WhatsApp business: registered legal entity name
   domain: 'khedar.io',
   url: 'https://khedar.io',
   tagline: 'Engineering for blockchain, trading, software and AI',
@@ -15,11 +15,11 @@ export const site = {
     'Khedar is a technology development and AI agency building blockchain systems, smart contracts, exchanges, wallets, SaaS products, marketplaces and AI automation, backed by 20 years of overall technology experience.',
   experienceYears: 20,
   contact: {
-    email: v(env.PUBLIC_CONTACT_EMAIL) || '', // UNCONFIGURED
-    whatsapp: v(env.PUBLIC_WHATSAPP_NUMBER).replace(/\D/g, '') || '', // UNCONFIGURED
-    address: '', // UNCONFIGURED
+    email: v(env.PUBLIC_CONTACT_EMAIL) || '', // WhatsApp business
+    whatsapp: v(env.PUBLIC_WHATSAPP_NUMBER).replace(/\D/g, '') || '917827536379', // WhatsApp business
+    address: '', // WhatsApp business
   },
-  formEndpoint: v(env.PUBLIC_FORM_ENDPOINT) || '', // UNCONFIGURED
+  formEndpoint: v(env.PUBLIC_FORM_ENDPOINT) || '', // WhatsApp business
   social: {
     linkedin: v(env.PUBLIC_LINKEDIN_URL) || '',
     x: v(env.PUBLIC_X_URL) || '',

@@ -41,7 +41,7 @@ const endpoint = site.formEndpoint;
       <div class="glass card"><h2 class="h3">What happens next</h2><ol class="next"><li>We read your enquiry and reply with clarifying questions.</li><li>A short call to understand scope and constraints.</li><li>A written outline of approach, phases and dependencies.</li></ol></div>
       {(email || whatsapp) && <div class="glass card"><h2 class="h3">Direct contact</h2><ul class="list">
         {email && <li><a href={`mailto:${email}`}>{email}</a></li>}
-        {whatsapp && <li><a href={`https://wa.me/${whatsapp}`} rel="noopener">Message us on WhatsApp</a></li>}
+        {whatsapp && <li><a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener">WhatsApp: +91 78275 36379</a></li>}
       </ul></div>}
     </aside>
   </div></section>

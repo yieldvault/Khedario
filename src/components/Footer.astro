@@ -15,7 +15,7 @@ const { email, whatsapp, address } = site.contact;
     </ul></nav>
     <ul class="ct">
       <li><span>Contact:</span> {email ? <a href={`mailto:${email}`}>{email}</a> : <em class="ph">[Business Email]</em>}</li>
-      <li><span>WhatsApp:</span> {whatsapp ? <a href={`https://wa.me/${whatsapp}`} rel="noopener">+{whatsapp}</a> : <em class="ph">[Business Number]</em>}</li>
+      <li><span>WhatsApp:</span> {whatsapp ? <a href={`https://wa.me/${whatsapp}`} rel="noopener"target="_blank">+91 78275 36379</a> : <em class="ph">[Business Number]</em>}</li>
       <li><span>Location:</span> {address || <em class="ph">[Company Location]</em>}</li>
     </ul>
   </div>
