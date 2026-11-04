@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import Shared from '../../components/concepts/Shared.astro';
+const facets = [
+  ['300,40 420,200 300,250', 'f1'], ['300,40 180,200 300,250', 'f2'], ['180,200 300,250 300,470', 'f3'],
+  ['420,200 300,250 300,470', 'f4'], ['300,40 420,200 470,150', 'f5'], ['300,40 180,200 130,150', 'f6'],
+];
+---
+<Base title="Concept: Crystal" description="Khedar design concept preview." noindex>
+  <section class="cr-hero">
+    <div class="wrap cr-in">
+      <div class="cr-copy">
+        <p class="eyebrow">Technology development & AI agency</p>
+        <h1 class="x3d" data-text="We engineer the systems serious products run on."><span class="chrome-gold">We engineer the systems serious products run on.</span></h1>
+        <p class="lead">Khedar designs and builds blockchain platforms, exchanges, wallets, SaaS products, marketplaces and AI automation, with the rigour that real users and real value demand.</p>
+        <div class="ctas"><a class="btn btn-primary" href="/contact">Discuss Your Project</a><a class="btn btn-ghost" href="/services">Explore Services</a></div>
+      </div>
+      <div class="cr-art tilt" aria-hidden="true">
+        <div class="cr-beam"></div>
+        <svg viewBox="0 0 600 520">
+          <defs>
+            <linearGradient id="f1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff8e1" stop-opacity=".9"/><stop offset="1" stop-color="#c9a227" stop-opacity=".25"/></linearGradient>
+            <linearGradient id="f2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6e8ee" stop-opacity=".55"/><stop offset="1" stop-color="#6b6f78" stop-opacity=".12"/></linearGradient>
+            <linearGradient id="f3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a8861f" stop-opacity=".45"/><stop offset="1" stop-color="#1a1305" stop-opacity=".2"/></linearGradient>
+            <linearGradient id="f4" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1e2b0" stop-opacity=".6"/><stop offset="1" stop-color="#4a3a10" stop-opacity=".15"/></linearGradient>
+            <linearGradient id="f5" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#e8d08a" stop-opacity=".1"/></linearGradient>
+            <linearGradient id="f6" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#d4d6db" stop-opacity=".4"/><stop offset="1" stop-color="#fff" stop-opacity=".05"/></linearGradient>
+            <filter id="gl"><feGaussianBlur stdDeviation="14"/></filter>
+          </defs>
+          <ellipse cx="300" cy="490" rx="170" ry="16" fill="#c9a227" opacity=".35" filter="url(#gl)"/>
+          <g class="cr-gem">
+            {facets.map(([p, g]) => <polygon points={p} fill={`url(#${g})`} stroke="rgba(255,248,225,.55)" stroke-width="1"/>)}
+            <polyline points="130,150 300,40 470,150" fill="none" stroke="#fff8e1" stroke-width="1.5" opacity=".8"/>
+            <line x1="300" y1="250" x2="300" y2="470" stroke="#fff" stroke-opacity=".5"/>
+          </g>
+          <g class="cr-sp" fill="#fff8e1">
+            <circle cx="300" cy="40" r="3"/><circle cx="420" cy="200" r="2"/><circle cx="180" cy="200" r="2"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+  <Shared variant="crystal" />
+</Base>
+<style>
+.cr-hero{position:relative;overflow:clip;padding:clamp(3rem,8vw,6.5rem) 0;isolation:isolate}
+.cr-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(40rem 26rem at 72% 45%,rgba(201,162,39,.18),transparent 65%),radial-gradient(30rem 20rem at 85% 20%,rgba(212,214,219,.08),transparent 60%)}
+.cr-in{display:grid;grid-template-columns:1.3fr 1fr;gap:2rem;align-items:center}
+@media (max-width:900px){.cr-in{grid-template-columns:1fr}.cr-art{order:-1;max-width:340px;margin:0 auto}}
+.cr-hero h1{font-size:clamp(2.4rem,5.2vw,4.7rem);font-weight:700}
+.ctas{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.cr-art{position:relative;transform:perspective(1000px) rotateX(var(--rx,0)) rotateY(var(--ry,0));transition:transform .6s var(--ease)}
+.cr-beam{position:absolute;left:-30%;top:38%;width:160%;height:3px;background:linear-gradient(90deg,transparent,rgba(255,248,225,.0) 20%,rgba(255,248,225,.7) 48%,rgba(232,208,138,.9) 52%,transparent 80%);transform:rotate(-14deg);filter:blur(1px);opacity:.6}
+.cr-gem{transform-origin:300px 250px;animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.cr-sp circle{animation:tw 3s ease-in-out infinite}.cr-sp circle:nth-child(2){animation-delay:1s}.cr-sp circle:nth-child(3){animation-delay:2s}
+@keyframes tw{50%{opacity:.2}}
+</style>

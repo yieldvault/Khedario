@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import Shared from '../../components/concepts/Shared.astro';
+---
+<Base title="Concept: Liquid Chrome" description="Khedar design concept preview." noindex>
+  <section class="ch-hero">
+    <div class="ch-blob" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="wrap ch-in">
+      <div class="ch-panel">
+        <p class="eyebrow">Technology development & AI agency</p>
+        <h1>We engineer the systems <span class="metal">serious products</span> run on.</h1>
+        <p class="lead">Khedar designs and builds blockchain platforms, exchanges, wallets, SaaS products, marketplaces and AI automation, with the rigour that real users and real value demand.</p>
+        <div class="ctas"><a class="btn btn-primary" href="/contact">Discuss Your Project</a><a class="btn btn-ghost" href="/services">Explore Services</a></div>
+      </div>
+      <div class="ch-chip" aria-hidden="true"><span class="metal">20</span><small>Years of overall technology experience</small></div>
+    </div>
+  </section>
+  <Shared variant="chrome" />
+</Base>
+<style>
+.ch-hero{position:relative;overflow:clip;padding:clamp(3rem,8vw,7rem) 0;isolation:isolate;min-height:min(92vh,860px);display:flex;align-items:center}
+.ch-blob{position:absolute;z-index:-1;right:-6%;top:50%;width:min(62vw,760px);aspect-ratio:1;transform:translateY(-50%)}
+.ch-blob i{position:absolute;inset:8%;border-radius:42% 58% 63% 37%/45% 38% 62% 55%;background:radial-gradient(circle at 30% 25%,#fff 0,#f1e2b0 8%,#9a9ca3 22%,#1a1714 42%,#c9a227 58%,#e6e8ee 70%,#2a2620 86%);box-shadow:inset -30px -40px 80px rgba(0,0,0,.6),inset 20px 30px 60px rgba(255,255,255,.25);animation:morph 16s ease-in-out infinite}
+.ch-blob i:nth-child(2){inset:22% 2% 4% 30%;opacity:.55;mix-blend-mode:screen;background:conic-gradient(from 120deg,#e8d08a,#d4d6db,#a8861f,#fff8e1,#6b6f78,#e8d08a);filter:blur(28px);animation-duration:22s;animation-direction:reverse}
+.ch-blob i:nth-child(3){inset:0;border-radius:50%;background:radial-gradient(closest-side,rgba(201,162,39,.25),transparent);filter:blur(40px);animation:none}
+@keyframes morph{33%{border-radius:58% 42% 38% 62%/55% 62% 38% 45%;transform:rotate(40deg)}66%{border-radius:38% 62% 55% 45%/62% 40% 60% 38%;transform:rotate(-20deg)}}
+.ch-in{display:grid;grid-template-columns:minmax(0,760px) auto;gap:2rem;align-items:end;justify-content:space-between}
+@media (max-width:900px){.ch-in{grid-template-columns:1fr}.ch-blob{width:120vw;right:-40%;top:22%;opacity:.7}}
+.ch-panel{padding:clamp(1.6rem,4vw,3rem);border-radius:28px;background:linear-gradient(150deg,rgba(255,255,255,.09),rgba(255,255,255,.02));border:1px solid rgba(230,232,238,.18);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 40px 80px -40px rgba(0,0,0,.9)}
+.ch-hero h1{font-size:clamp(2.3rem,5vw,4.4rem)}
+.metal{background:linear-gradient(100deg,#d4d6db 0%,#fff 18%,#9a9ca3 34%,#e8d08a 52%,#fff8e1 64%,#a8861f 80%,#e6e8ee 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 8s linear infinite}
+@keyframes sheen{to{background-position:200% 0}}
+.ctas{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.8rem}
+.ch-chip{padding:1.4rem 1.6rem;border-radius:20px;background:rgba(14,12,10,.55);border:1px solid rgba(232,208,138,.25);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);max-width:14rem}
+.ch-chip span{display:block;font:200 4.5rem/1 var(--display);letter-spacing:-.05em}
+.ch-chip small{color:var(--soft);font-size:.85rem}
+@media (prefers-reduced-motion:reduce){.ch-blob i,.metal{animation:none}}
+</style>
