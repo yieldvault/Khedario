@@ -6,7 +6,7 @@ const cur = Astro.url.pathname.replace(/\/$/, '');
 <header class="hdr">
   <div class="wrap bar">
     <a href="/" class="logo" aria-label={`${site.name} home`}>
-      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><path d="M20 14v36M20 32l20-18M24 29l18 21" stroke="#22d3ee" stroke-width="5" stroke-linecap="round" fill="none"/><circle cx="44" cy="14" r="4" fill="#34d399"/></svg>
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><path d="M20 14v36M20 32l20-18M24 29l18 21" style="stroke:var(--cyan)" stroke-width="5" stroke-linecap="round" fill="none"/><circle cx="44" cy="14" r="4" style="fill:var(--emerald)"/></svg>
       <span>{site.name}</span>
     </a>
     <button class="menu-btn" aria-expanded="false" aria-controls="nav-menu">
@@ -21,7 +21,7 @@ const cur = Astro.url.pathname.replace(/\/$/, '');
   </div>
 </header>
 <style>
-.hdr{position:sticky;top:0;z-index:50;background:rgba(5,7,13,.6);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-bottom:1px solid var(--line)}
+.hdr{position:sticky;top:0;z-index:50;background:rgba(var(--s0),.6);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:1rem}
 .logo{display:flex;align-items:center;gap:.6rem;color:var(--text);text-decoration:none;font:600 1.3rem var(--display);letter-spacing:-.04em}
 .nav{display:flex;align-items:center;gap:2rem}
@@ -30,7 +30,7 @@ const cur = Astro.url.pathname.replace(/\/$/, '');
 .nav ul{gap:.25rem!important;padding:.3rem!important;border:1px solid var(--line)!important;border-radius:999px;background:rgba(255,255,255,.02)}
 .nav ul a:hover{background:rgba(255,255,255,.05)}
 .nav ul a:hover,.nav ul a[aria-current]{color:var(--text)}
-.nav ul a[aria-current]{background:rgba(34,211,238,.12);color:var(--text)}
+.nav ul a[aria-current]{background:rgba(var(--a1),.12);color:var(--text)}
 @media (max-width:860px){.nav ul{border:0!important;background:none!important;padding:0!important}}
 .menu-btn{display:none;background:none;border:1px solid var(--line-hi);border-radius:10px;width:46px;height:46px;cursor:pointer;place-items:center}
 .bars,.bars::before,.bars::after{display:block;width:20px;height:2px;background:var(--text);position:relative;transition:transform .2s}
@@ -40,7 +40,7 @@ const cur = Astro.url.pathname.replace(/\/$/, '');
 .menu-btn[aria-expanded="true"] .bars::after{transform:translateY(-6px) rotate(-45deg)}
 @media (max-width:860px){
   .menu-btn{display:grid}
-  .nav{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:stretch;gap:1rem;padding:1.25rem 1.25rem 1.75rem;background:#070c17;border-bottom:1px solid var(--line)}
+  .nav{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:stretch;gap:1rem;padding:1.25rem 1.25rem 1.75rem;background:var(--bg2);border-bottom:1px solid var(--line)}
   .nav.open{display:flex}
   .nav ul{flex-direction:column;gap:.25rem}
   .nav ul a{display:block;padding:.8rem .25rem;font-size:1.1rem}

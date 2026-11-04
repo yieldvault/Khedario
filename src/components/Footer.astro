@@ -23,7 +23,7 @@ const { email, whatsapp } = site.contact;
   <div class="wrap base"><p>© {new Date().getFullYear()} {site.name}. {site.domain}</p></div>
 </footer>
 <style>
-.ftr{border-top:1px solid transparent;border-image:linear-gradient(90deg,transparent,var(--line-hi),transparent) 1;margin-top:4rem;padding:4rem 0 2rem;background:rgba(5,8,15,.6);font-size:.95rem}
+.ftr{border-top:1px solid transparent;border-image:linear-gradient(90deg,transparent,var(--line-hi),transparent) 1;margin-top:4rem;padding:4rem 0 2rem;background:rgba(var(--s0),.6);font-size:.95rem}
 .cols{display:grid;gap:2.5rem;grid-template-columns:2fr 1.4fr 1fr 1fr}
 @media (max-width:900px){.cols{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.cols{grid-template-columns:1fr}}
