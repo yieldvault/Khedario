@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import HeroVisual from '../components/HeroVisual.astro';
 import ServiceCards from '../components/ServiceCards.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
@@ -29,14 +28,14 @@ const steps = [
 ---
 <Base title="Khedar | Blockchain, Trading Platforms, SaaS & AI Development" description={site.description}>
   <section class="hero">
+    <div class="lc-blob" aria-hidden="true"><i></i><i></i></div>
     <div class="wrap hero-in">
-      <div>
+      <div class="lc-panel">
         <p class="eyebrow">Technology development & AI agency</p>
-        <h1>We engineer the systems <span class="hl">serious products</span> run on.</h1>
+        <h1>We engineer the systems <span class="metal">serious products</span> run on.</h1>
         <p class="lead">Khedar designs and builds blockchain platforms, exchanges, wallets, SaaS products, marketplaces and AI automation, with the rigour that real users and real value demand.</p>
         <div class="ctas"><a class="btn btn-primary" href="/contact">Discuss Your Project</a><a class="btn btn-ghost" href="/services">Explore Services</a></div>
       </div>
-      <HeroVisual />
     </div>
   </section>
   <div class="marquee" aria-hidden="true"><div class="mq-track">{[0,1].map(() => <span>{services.map((x) => <><b>{x.title}</b><i>✦</i></>)}</span>)}</div></div>
@@ -113,7 +112,9 @@ const steps = [
 .hero::before{content:"";position:absolute;z-index:-1;width:min(70rem,140vw);aspect-ratio:1;left:50%;top:-30rem;transform:translateX(-50%);background:conic-gradient(from 200deg,rgba(var(--a1),.0),rgba(var(--a1),.22),rgba(var(--a2),.14),rgba(var(--a2),.12),rgba(var(--a1),0));filter:blur(80px);border-radius:50%;pointer-events:none;animation:spin 30s linear infinite}
 @keyframes spin{to{transform:translateX(-50%) rotate(360deg)}}
 .hero h1{font-size:clamp(2.4rem,5.3vw,4.8rem)}
-.hero-in{display:grid;grid-template-columns:1.4fr 1fr;gap:2rem;align-items:center}
+.hero{min-height:min(88vh,820px);display:flex;align-items:center}.hero>.wrap{width:min(100% - 2.5rem,var(--max))}
+.hero-in{display:block}.lc-panel{max-width:46rem}
+.hero::before{display:none}
 .marquee{border-block:1px solid var(--line);overflow:hidden;padding:1.1rem 0;background:rgba(var(--s0),.5);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
 .mq-track{display:flex;width:max-content;animation:mq 50s linear infinite}
 .mq-track span{display:flex;align-items:center;gap:2rem;padding-right:2rem;white-space:nowrap}
