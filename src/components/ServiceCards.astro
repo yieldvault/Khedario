@@ -3,9 +3,9 @@ import { services } from '../data/services';
 import Icon from './Icon.astro';
 ---
 <ul class="grid g4 cards" role="list">
-  {services.map((s) => (
+  {services.map((s, i) => (
     <li class="glass card reveal">
-      <div class="icon"><Icon name={s.icon} /></div>
+      <div class="icon"><Icon name={s.icon} /></div><span class="idx" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
       <h3><a class="stretch" href={`/services/${s.slug}`}>{s.title}</a></h3>
       <p>{s.summary}</p>
       <span class="more" aria-hidden="true">Explore <Icon name="arrow" size={16} /></span>
@@ -14,6 +14,8 @@ import Icon from './Icon.astro';
 </ul>
 <style>
 .cards{list-style:none;padding:0;margin:0}
+.idx{position:absolute;top:1.6rem;right:1.6rem;font:500 .75rem var(--mono);color:#7d8aa0;letter-spacing:.1em}
+.card:hover .idx{color:var(--cyan)}
 .more{display:inline-flex;align-items:center;gap:.35rem;margin-top:1.1rem;color:var(--cyan);font-weight:600;font-size:.9rem}
 .card:hover .more{gap:.6rem}
 </style>
