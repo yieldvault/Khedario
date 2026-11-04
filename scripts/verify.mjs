@@ -27,7 +27,7 @@ out.crawled = [...seen];
 // 404
 { const pg = await ctx.newPage(); const r = await pg.goto(B + '/nope'); out.notFound = { status: r.status(), title: await pg.title() }; await pg.close(); }
 // screenshots
-const shot = async (path, w, file) => { const pg = await br.newPage({ viewport: { width: w, height: 900 } }); await pg.emulateMedia({ reducedMotion: 'reduce' }); await pg.goto(B + path, { waitUntil: 'networkidle' }); await pg.screenshot({ path: 'screens/' + file, fullPage: true }); await pg.close(); };
+const shot = async (path, w, file) => { const pg = await br.newPage({ viewport: { width: w, height: 900 } }); await pg.emulateMedia({ reducedMotion: 'reduce' }); await pg.goto(B + path, { waitUntil: 'networkidle' }); await pg.screenshot({ path: 'screens/v2-' + file, fullPage: true }); await pg.close(); };
 await shot('/', 1440, 'home-1440.png'); await shot('/', 360, 'home-360.png'); await shot('/services/centralized-exchange-development', 1440, 'service-cex-1440.png');
 // mobile menu keyboard
 { const pg = await br.newPage({ viewport: { width: 360, height: 800 } }); await pg.goto(B + '/');

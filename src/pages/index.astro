@@ -107,16 +107,19 @@ const steps = [
   <CtaBand title="Let's scope your project properly." text="Share your goals and constraints. We will respond with clarifying questions, a suggested approach and an outline of what it would take, with no obligation." />
 </Base>
 <style>
-.hero{padding:clamp(3rem,7vw,5.5rem) 0 2rem}
+.hero{padding:clamp(3.5rem,9vw,7.5rem) 0 clamp(3rem,6vw,5rem);position:relative;isolation:isolate;overflow:clip}
+.hero::before{content:"";position:absolute;z-index:-1;width:min(70rem,140vw);aspect-ratio:1;left:50%;top:-30rem;transform:translateX(-50%);background:conic-gradient(from 200deg,rgba(34,211,238,.0),rgba(34,211,238,.22),rgba(52,211,153,.14),rgba(99,102,241,.12),rgba(34,211,238,0));filter:blur(80px);border-radius:50%;pointer-events:none;animation:spin 30s linear infinite}
+@keyframes spin{to{transform:translateX(-50%) rotate(360deg)}}
+.hero h1{max-width:14ch;font-size:clamp(2.5rem,6.2vw,5.4rem)}
 .hero-in{display:grid;grid-template-columns:1.05fr 1fr;gap:3rem;align-items:center}
 @media (max-width:900px){.hero-in{grid-template-columns:1fr}}
-.hl{background:linear-gradient(90deg,var(--cyan),var(--emerald));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hl{background:linear-gradient(100deg,#a5f3fc,var(--cyan) 40%,var(--emerald));font-style:normal;-webkit-background-clip:text;background-clip:text;color:transparent}
 .ctas{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
 .exp{border-block:1px solid var(--line);background:rgba(11,17,29,.6)}
 .exp-in{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center;padding:3rem 0}
 @media (max-width:700px){.exp-in{grid-template-columns:1fr;gap:1rem}}
 .num{font:500 1.2rem var(--display);color:var(--muted);margin:0;display:flex;align-items:baseline;gap:.6rem}
-.num span{font-size:clamp(4rem,10vw,6.5rem);font-weight:700;color:var(--text);line-height:1;-webkit-text-stroke:1px var(--cyan);color:transparent}
+.num span{font-size:clamp(5rem,12vw,8.5rem);font-weight:200;letter-spacing:-.06em;-webkit-text-stroke:0!important;background:linear-gradient(180deg,#fff,rgba(165,243,252,.35));-webkit-background-clip:text;background-clip:text;color:var(--text);line-height:1;-webkit-text-stroke:1px var(--cyan);color:transparent}
 .exp h2{font-size:clamp(1.4rem,2.6vw,1.9rem)}
 .exp p{margin:0}
 .intro{max-width:52rem}
@@ -125,7 +128,7 @@ const steps = [
 .why h3{font-size:1.1rem}.why p{font-size:.97rem}
 .steps{list-style:none;padding:0;margin:0;display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))}
 .steps li{padding:1.6rem}.steps p{margin:0;font-size:.97rem}
-.n{font:700 .9rem var(--display);color:var(--emerald);letter-spacing:.1em;display:block;margin-bottom:.8rem}
+.n{font:500 .8rem var(--mono);color:var(--emerald);letter-spacing:.1em;display:block;margin-bottom:.8rem}
 .about{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
 @media (max-width:800px){.about{grid-template-columns:1fr;gap:0}}
 </style>

@@ -24,7 +24,7 @@ if (socialLinks.length) org.sameAs = socialLinks.map(([, h]) => h);
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
   {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
-  <meta name="theme-color" content="#060a13" />
+  <meta name="theme-color" content="#05070d" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="sitemap" href="/sitemap-index.xml" />
   <meta property="og:type" content="website" />
@@ -53,6 +53,7 @@ if (socialLinks.length) org.sameAs = socialLinks.map(([, h]) => h);
       const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
       els.forEach((e) => io.observe(e));
     }
+    document.addEventListener('pointermove', (e) => { const c = (e.target as HTMLElement).closest?.('.card') as HTMLElement | null; if (!c) return; const r = c.getBoundingClientRect(); c.style.setProperty('--mx', `${e.clientX - r.left}px`); c.style.setProperty('--my', `${e.clientY - r.top}px`); });
   </script>
 </body>
 </html>

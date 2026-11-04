@@ -23,12 +23,12 @@ const { email, whatsapp } = site.contact;
   <div class="wrap base"><p>© {new Date().getFullYear()} {site.name}. {site.domain}</p></div>
 </footer>
 <style>
-.ftr{border-top:1px solid var(--line);margin-top:4rem;padding:4rem 0 2rem;background:rgba(5,8,15,.6);font-size:.95rem}
+.ftr{border-top:1px solid transparent;border-image:linear-gradient(90deg,transparent,var(--line-hi),transparent) 1;margin-top:4rem;padding:4rem 0 2rem;background:rgba(5,8,15,.6);font-size:.95rem}
 .cols{display:grid;gap:2.5rem;grid-template-columns:2fr 1.4fr 1fr 1fr}
 @media (max-width:900px){.cols{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.cols{grid-template-columns:1fr}}
-.name{font:700 1.4rem var(--display);color:var(--text);text-decoration:none;display:inline-block;margin-bottom:.8rem}
-h2{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text);margin-bottom:1rem}
+.name{font:600 1.5rem var(--display);letter-spacing:-.04em;color:var(--text);text-decoration:none;display:inline-block;margin-bottom:.8rem}
+h2{font:500 .72rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--text);margin-bottom:1rem}
 ul{list-style:none;padding:0;margin:0;display:grid;gap:.45rem}
 a{color:var(--muted);text-decoration:none}a:hover{color:var(--cyan)}
 .base{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.5rem}
