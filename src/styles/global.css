@@ -127,3 +127,16 @@ h1,h2{text-shadow:0 1px 0 rgba(255,255,255,.08)}
 summary{color:#ffe08a}
 .list li::before{border-color:#ffe08a;box-shadow:0 0 8px rgba(255,214,102,.7)}
 @media (prefers-reduced-motion:reduce){.btn-primary::after,.sparkle,.lc-blob::after,.section h2::after{animation:none}.sparkle{opacity:.7}}
+
+/* Khedar logo turntable */
+.kx-spin{position:relative;width:min(78%,340px);aspect-ratio:1;margin:0 auto;perspective:900px}
+.kx-turn{position:absolute;inset:0;transform-style:preserve-3d;animation:kxspin 9s linear infinite;filter:drop-shadow(0 14px 30px rgba(212,165,72,.28))}
+.kx-mark{width:100%;height:100%;display:block;backface-visibility:visible}
+.kx-glint{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;background:linear-gradient(105deg,transparent 35%,rgba(255,240,200,.55) 48%,transparent 60%);background-size:250% 100%;-webkit-mask:url(/khedar-mark.svg) center/contain no-repeat;mask:url(/khedar-mark.svg) center/contain no-repeat;animation:kxglint 4.5s ease-in-out infinite}
+.kx-shadow{position:absolute;left:20%;right:20%;bottom:-6%;height:8%;border-radius:50%;background:radial-gradient(rgba(212,165,72,.35),transparent 70%);animation:kxsh 9s linear infinite}
+@keyframes kxspin{to{transform:rotateY(360deg)}}
+@keyframes kxglint{0%{background-position:120% 0}60%,100%{background-position:-120% 0}}
+@keyframes kxsh{0%,50%,100%{transform:scaleX(1)}25%,75%{transform:scaleX(.35)}}
+@media (prefers-reduced-motion:reduce){.kx-turn,.kx-glint,.kx-shadow{animation:none}.kx-turn{transform:rotateY(-18deg)}}
+@media (min-width:901px){.kx-spin{position:absolute;z-index:0;right:5%;top:50%;transform:translateY(-50%);width:min(30vw,440px);margin:0}}
+@media (max-width:900px){.kx-spin{width:min(62vw,300px)}}
