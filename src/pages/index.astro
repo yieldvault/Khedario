@@ -1,0 +1,131 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroVisual from '../components/HeroVisual.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../config/site';
+const featured = [
+  { t: 'Blockchain', i: 'chain', d: 'Contracts, indexers and custody-aware architecture for products that need verifiable state.', l: '/services/blockchain-development' },
+  { t: 'Trading Platforms', i: 'cex', d: 'Decentralized and centralized exchange software: matching, ledgers, routing and risk controls.', l: '/services/centralized-exchange-development' },
+  { t: 'Business Software', i: 'saas', d: 'SaaS products, commerce portals and internal tools built for long-term operation.', l: '/services/saas-development' },
+  { t: 'AI Automation', i: 'ai', d: 'Assistants and workflows grounded in your data, measured against real outcomes.', l: '/services/ai-agency-and-business-automation' },
+];
+const why = [
+  { t: 'Engineering depth across eras', i: 'layers', d: 'Two decades of building software means we have seen technologies rise and fade. We choose tools for fit, not fashion.' },
+  { t: 'Honest about limits', i: 'eye', d: 'We tell you what code can solve and what needs lawyers, auditors, custodians or liquidity, before you spend on it.' },
+  { t: 'Security as process', i: 'shield', d: 'Threat models, tests, reviews and recovery plans are part of the build, not an add-on.' },
+  { t: 'You own everything', i: 'handshake', d: 'Code lives in your repositories and runs in your accounts. Handover includes documentation your team can use.' },
+];
+const steps = [
+  ['Discover', 'We map goals, users, constraints and the dependencies outside the code.'],
+  ['Define', 'Scope, architecture and risks are written down and agreed before building.'],
+  ['Design', 'Interfaces and data flows are prototyped and tested with real scenarios.'],
+  ['Build', 'Short iterations with working software, automated tests and visible progress.'],
+  ['Verify', 'Security review, load and acceptance testing, and preparation for external audits where relevant.'],
+  ['Launch & Operate', 'Staged release, monitoring, runbooks and ongoing support as needed.'],
+];
+---
+<Base title="Khedar | Blockchain, Trading Platforms, SaaS & AI Development" description={site.description}>
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div>
+        <p class="eyebrow">Technology development & AI agency</p>
+        <h1>We engineer the systems <span class="hl">serious products</span> run on.</h1>
+        <p class="lead">Khedar designs and builds blockchain platforms, exchanges, wallets, SaaS products, marketplaces and AI automation, with the rigour that real users and real value demand.</p>
+        <div class="ctas"><a class="btn btn-primary" href="/contact">Discuss Your Project</a><a class="btn btn-ghost" href="/services">Explore Services</a></div>
+      </div>
+      <HeroVisual />
+    </div>
+  </section>
+
+  <section class="exp" aria-label="Experience">
+    <div class="wrap exp-in reveal">
+      <p class="num"><span>20</span> Years</p>
+      <div><h2>20 Years of Technology Experience</h2><p>Our experience spans two decades of software, infrastructure and product engineering. Blockchain and generative AI are recent fields; we bring that broader engineering discipline to them.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap intro reveal">
+      <p class="eyebrow">Who we are</p>
+      <h2>A development partner for technically demanding products.</h2>
+      <p class="lead">Khedar works with founders and businesses who need more than a website: platforms that move value, process transactions, automate decisions or serve customers at scale.</p>
+      <p>We cover the full path from architecture to operation, and we are clear about where specialist partners such as auditors, custodians, payment providers and legal advisers are required.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <p class="eyebrow">Services</p><h2 class="reveal">Eight disciplines, one engineering standard.</h2>
+      <ServiceCards />
+    </div>
+  </section>
+
+  <section class="section feat">
+    <div class="wrap">
+      <p class="eyebrow">Featured capabilities</p><h2 class="reveal">Where we go deepest.</h2>
+      <div class="grid g2">
+        {featured.map((f) => (
+          <article class="glass card reveal fcard">
+            <div class="icon"><Icon name={f.i} /></div>
+            <h3><a class="stretch" href={f.l}>{f.t}</a></h3><p>{f.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Why work with us</p><h2 class="reveal">Built to be trusted, not just shipped.</h2>
+      <div class="grid g4">
+        {why.map((w) => <div class="why reveal"><div class="icon"><Icon name={w.i} /></div><h3>{w.t}</h3><p>{w.d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Process</p><h2 class="reveal">Six steps from idea to operation.</h2>
+      <ol class="steps">
+        {steps.map(([t, d], i) => <li class="glass reveal"><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{t}</h3><p>{d}</p></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap about reveal">
+      <div><p class="eyebrow">About Khedar</p><h2>Long experience. Current technology. Plain answers.</h2></div>
+      <div>
+        <p>Khedar was formed to give ambitious projects access to experienced engineering across blockchain, trading systems, business software and AI. We work as an extension of your team, document our decisions, and leave you with systems you can run.</p>
+        <a class="btn btn-ghost" href="/about">More about us</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Let's scope your project properly." text="Share your goals and constraints. We will respond with clarifying questions, a suggested approach and an outline of what it would take, with no obligation." />
+</Base>
+<style>
+.hero{padding:clamp(3rem,7vw,5.5rem) 0 2rem}
+.hero-in{display:grid;grid-template-columns:1.05fr 1fr;gap:3rem;align-items:center}
+@media (max-width:900px){.hero-in{grid-template-columns:1fr}}
+.hl{background:linear-gradient(90deg,var(--cyan),var(--emerald));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ctas{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.exp{border-block:1px solid var(--line);background:rgba(11,17,29,.6)}
+.exp-in{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center;padding:3rem 0}
+@media (max-width:700px){.exp-in{grid-template-columns:1fr;gap:1rem}}
+.num{font:500 1.2rem var(--display);color:var(--muted);margin:0;display:flex;align-items:baseline;gap:.6rem}
+.num span{font-size:clamp(4rem,10vw,6.5rem);font-weight:700;color:var(--text);line-height:1;-webkit-text-stroke:1px var(--cyan);color:transparent}
+.exp h2{font-size:clamp(1.4rem,2.6vw,1.9rem)}
+.exp p{margin:0}
+.intro{max-width:52rem}
+.fcard{padding:2rem}
+.feat .g2{grid-template-columns:repeat(2,1fr)}@media (max-width:700px){.feat .g2{grid-template-columns:1fr}}
+.why h3{font-size:1.1rem}.why p{font-size:.97rem}
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))}
+.steps li{padding:1.6rem}.steps p{margin:0;font-size:.97rem}
+.n{font:700 .9rem var(--display);color:var(--emerald);letter-spacing:.1em;display:block;margin-bottom:.8rem}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+@media (max-width:800px){.about{grid-template-columns:1fr;gap:0}}
+</style>

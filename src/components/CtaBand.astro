@@ -1,0 +1,8 @@
+---
+interface Props { title?: string; text?: string; href?: string; label?: string }
+const { title = 'Have a project in mind?', text = 'Tell us what you are building, where it is today and what success looks like. We will reply with questions, an honest view of the approach, and the next step.', href = '/contact', label = 'Discuss Your Project' } = Astro.props;
+---
+<section class="section"><div class="wrap"><div class="glass cta-band reveal">
+  <h2>{title}</h2><p class="lead">{text}</p>
+  <a class="btn btn-primary" href={href}>{label}</a>
+</div></div></section>

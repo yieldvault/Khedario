@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config/site';
+import { services } from '../data/services';
+const { email, whatsapp } = site.contact;
+const endpoint = site.formEndpoint;
+---
+<Base title="Contact" description="Contact Khedar to discuss a blockchain, exchange, wallet, SaaS, marketplace or AI automation project.">
+  <section class="page-hero"><div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h1>Discuss your project.</h1>
+    <p class="lead">Tell us what you want to build. A useful first message covers the goal, the current state, any deadlines, and the constraints we should know about.</p>
+  </div></section>
+  <section class="section" style="padding-top:1rem"><div class="wrap layout">
+    <form id="enquiry" class="glass form" novalidate data-endpoint={endpoint} aria-describedby={endpoint ? undefined : 'unavail'}>
+      {!endpoint && (
+        <div id="unavail" class="note warn" role="note">
+          <strong>Online submission is not available yet.</strong> The form endpoint has not been configured, so messages cannot be sent from this page. {email ? <>Please email <a href={`mailto:${email}`}>{email}</a> instead.</> : 'Please check back soon.'}
+        </div>
+      )}
+      <div class="row">
+        <div class="f"><label for="name">Name <span aria-hidden="true">*</span></label><input id="name" name="name" autocomplete="name" required aria-required="true" aria-describedby="name-err" /><p class="err" id="name-err"></p></div>
+        <div class="f"><label for="email">Email <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required aria-required="true" aria-describedby="email-err" /><p class="err" id="email-err"></p></div>
+      </div>
+      <div class="row">
+        <div class="f"><label for="company">Company <span class="opt">(optional)</span></label><input id="company" name="company" autocomplete="organization" /></div>
+        <div class="f"><label for="service">Service <span aria-hidden="true">*</span></label>
+          <select id="service" name="service" required aria-required="true" aria-describedby="service-err">
+            <option value="">Select a service</option>
+            {services.map((s) => <option value={s.slug}>{s.title}</option>)}
+            <option value="other">Other / not sure</option>
+          </select><p class="err" id="service-err"></p></div>
+      </div>
+      <div class="f"><label for="message">Project details <span aria-hidden="true">*</span></label><textarea id="message" name="message" rows="6" required aria-required="true" minlength="20" aria-describedby="message-hint message-err"></textarea><p class="hint" id="message-hint">At least 20 characters. Please do not include passwords, private keys or other secrets.</p><p class="err" id="message-err"></p></div>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+      <p class="req"><span aria-hidden="true">*</span> Required field</p>
+      <button class="btn btn-primary" type="submit" id="submit">Send enquiry</button>
+      <div id="status" class="note" role="status" aria-live="polite" hidden></div>
+    </form>
+    <aside class="side">
+      <div class="glass card"><h2 class="h3">What happens next</h2><ol class="next"><li>We read your enquiry and reply with clarifying questions.</li><li>A short call to understand scope and constraints.</li><li>A written outline of approach, phases and dependencies.</li></ol></div>
+      {(email || whatsapp) && <div class="glass card"><h2 class="h3">Direct contact</h2><ul class="list">
+        {email && <li><a href={`mailto:${email}`}>{email}</a></li>}
+        {whatsapp && <li><a href={`https://wa.me/${whatsapp}`} rel="noopener">Message us on WhatsApp</a></li>}
+      </ul></div>}
+    </aside>
+  </div></section>
+</Base>
+<style>
+.layout{display:grid;grid-template-columns:1.6fr 1fr;gap:2rem;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:1fr}}
+.form{padding:clamp(1.25rem,4vw,2.25rem)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:600px){.row{grid-template-columns:1fr}}
+.f{margin-bottom:1.1rem;display:flex;flex-direction:column}
+label{color:var(--text);font-weight:600;font-size:.95rem;margin-bottom:.4rem}
+.opt,.hint,.req{color:var(--muted);font-weight:400;font-size:.88rem}
+.hint{margin:.35rem 0 0}
+input,select,textarea{font:inherit;color:var(--text);background:#0a101c;border:1px solid rgba(148,197,255,.28);border-radius:10px;padding:.75rem .9rem;min-height:46px;width:100%}
+select{appearance:auto}
+input:focus-visible,select:focus-visible,textarea:focus-visible{border-color:var(--cyan);outline:2px solid var(--cyan);outline-offset:1px}
+[aria-invalid="true"]{border-color:#f87171}
+.err{color:#fca5a5;font-size:.88rem;margin:.35rem 0 0;min-height:0}
+.err:empty{display:none}
+.hp{position:absolute;left:-9999px}
+.note{border-radius:10px;padding:1rem 1.1rem;margin:0 0 1.2rem;border:1px solid var(--line-hi);background:rgba(34,211,238,.07);color:var(--text)}
+#status{margin:1.2rem 0 0}
+.note.warn{border-color:rgba(251,191,36,.5);background:rgba(251,191,36,.08)}
+.note.ok{border-color:rgba(52,211,153,.6);background:rgba(52,211,153,.1)}
+.note.bad{border-color:rgba(248,113,113,.6);background:rgba(248,113,113,.1)}
+button[disabled]{opacity:.65;cursor:progress}
+.side{display:grid;gap:1.25rem}.side .card:hover{transform:none}
+.h3{font-size:1.2rem}
+.next{padding-left:1.2rem;margin:0;display:grid;gap:.5rem;font-size:.97rem}
+</style>
+<script>
+  const form = document.getElementById('enquiry') as HTMLFormElement;
+  const status = document.getElementById('status')!;
+  const btn = document.getElementById('submit') as HTMLButtonElement;
+  const endpoint = form.dataset.endpoint || '';
+  const sel = form.querySelector<HTMLSelectElement>('#service')!;
+  const pre = new URLSearchParams(location.search).get('service');
+  if (pre && [...sel.options].some((o) => o.value === pre)) sel.value = pre;
+
+  const show = (cls: string, html: string) => { status.hidden = false; status.className = `note ${cls}`; status.innerHTML = html; };
+  const fields: [string, (v: string) => string][] = [
+    ['name', (v) => (v.trim().length < 2 ? 'Please enter your name.' : '')],
+    ['email', (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : 'Please enter a valid email address.')],
+    ['service', (v) => (v ? '' : 'Please choose a service.')],
+    ['message', (v) => (v.trim().length < 20 ? 'Please describe your project in at least 20 characters.' : '')],
+  ];
+  const validate = () => {
+    let first: HTMLElement | null = null;
+    for (const [id, check] of fields) {
+      const el = document.getElementById(id) as HTMLInputElement;
+      const msg = check(el.value);
+      document.getElementById(`${id}-err`)!.textContent = msg;
+      el.setAttribute('aria-invalid', String(!!msg));
+      if (msg && !first) first = el;
+    }
+    first?.focus();
+    return !first;
+  };
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validate()) { show('bad', 'Please correct the highlighted fields.'); return; }
+    if (!endpoint) { show('warn', '<strong>Not sent.</strong> Online submission is not configured yet, so your message was not delivered. Nothing has been stored.'); return; }
+    btn.disabled = true; btn.textContent = 'Sending…'; show('', 'Sending your enquiry…');
+    try {
+      const res = await fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset(); show('ok', '<strong>Thank you.</strong> Your enquiry was received. We will reply by email.');
+    } catch {
+      show('bad', '<strong>Your enquiry could not be sent.</strong> Please check your connection and try again.');
+    } finally { btn.disabled = false; btn.textContent = 'Send enquiry'; }
+  });
+</script>

@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { services, type Service } from '../../data/services';
+export function getStaticPaths() { return services.map((s) => ({ params: { slug: s.slug }, props: { s } })); }
+const { s } = Astro.props as { s: Service };
+const others = services.filter((o) => o.slug !== s.slug);
+const contact = `/contact?service=${s.slug}`;
+---
+<Base title={s.title} description={s.metaDescription}>
+  <section class="page-hero"><div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/services">Services</a> / <span aria-current="page">{s.title}</span></nav>
+    <div class="icon big"><Icon name={s.icon} size={28} /></div>
+    <h1>{s.title}</h1>
+    <p class="lead">{s.intro}</p>
+    <a class="btn btn-primary" href={contact}>{s.cta}</a>
+  </div></section>
+
+  <section class="section" style="padding-top:2rem"><div class="wrap two">
+    <div><p class="eyebrow">What we build</p><h2>Scope of work</h2></div>
+    <ul class="list reveal">{s.build.map((b) => <li>{b}</li>)}</ul>
+  </div></section>
+
+  <section class="section" style="padding-top:0"><div class="wrap">
+    <p class="eyebrow">Business needs</p><h2>When this service fits</h2>
+    <div class="grid g3">{s.needs.map((n) => <div class="glass card reveal"><h3>{n.title}</h3><p>{n.body}</p></div>)}</div>
+  </div></section>
+
+  <section class="section" style="padding-top:0"><div class="wrap grid g2">
+    <div class="glass card reveal pad"><p class="eyebrow">Key capabilities</p><ul class="list">{s.capabilities.map((c) => <li>{c}</li>)}</ul></div>
+    <div class="glass card reveal pad"><p class="eyebrow">Typical deliverables</p><ul class="list">{s.deliverables.map((c) => <li>{c}</li>)}</ul></div>
+  </div></section>
+
+  <section class="section" style="padding-top:0"><div class="wrap two">
+    <div><p class="eyebrow">Integration & operations</p><h2>Things to plan for</h2><p>Questions we raise early so they do not surprise you later.</p></div>
+    <div>{s.considerations.map((c, i) => <details class="acc" open={i === 0}><summary>{c.q}</summary><div><p>{c.a}</p></div></details>)}</div>
+  </div></section>
+
+  <CtaBand title={`${s.cta}.`} text={`Tell us about your ${s.short.toLowerCase()} requirements. The enquiry form will open with this service already selected.`} href={contact} label={s.cta} />
+
+  <section class="section" style="padding-top:0"><div class="wrap">
+    <h2 class="h3">Related services</h2>
+    <ul class="rel">{others.map((o) => <li><a href={`/services/${o.slug}`}>{o.title}</a></li>)}</ul>
+  </div></section>
+</Base>
+<style>
+.big{width:56px;height:56px;margin-bottom:1.4rem}
+.two{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem}
+@media (max-width:800px){.two{grid-template-columns:1fr;gap:1rem}}
+.pad{padding:2rem}.pad:hover{transform:none}
+.h3{font-size:1.3rem}
+.rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.6rem}
+.rel a{display:inline-block;padding:.55rem 1rem;border:1px solid var(--line);border-radius:999px;color:var(--muted);text-decoration:none;font-size:.92rem}
+.rel a:hover{border-color:var(--line-hi);color:var(--text)}
+</style>

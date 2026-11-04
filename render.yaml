@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: khedar-website
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: PUBLIC_CONTACT_EMAIL
+        sync: false
+      - key: PUBLIC_WHATSAPP_NUMBER
+        sync: false
+      - key: PUBLIC_FORM_ENDPOINT
+        sync: false

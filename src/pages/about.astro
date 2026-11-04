@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+const principles = [
+  ['Clarity before code', 'We write down scope, assumptions and risks so everyone agrees on what is being built and why.'],
+  ['Right-sized technology', 'Not every problem needs a blockchain or a language model. We will say so when a simpler approach works better.'],
+  ['Security and correctness first', 'For systems that hold value or make decisions, testing, review and recovery planning come before polish.'],
+  ['Transparent dependencies', 'Licences, audits, custody, liquidity and payment processing involve third parties. We identify them early.'],
+  ['Ownership stays with you', 'Your repositories, your cloud accounts, your keys. We hand over documentation that lets your team continue.'],
+];
+---
+<Base title="About" description="About Khedar: a technology development and AI agency with 20 years of overall technology experience, building blockchain, trading, SaaS, commerce and AI systems.">
+  <section class="page-hero"><div class="wrap">
+    <p class="eyebrow">About</p>
+    <h1>Experienced engineers for the technology that is changing fastest.</h1>
+    <p class="lead">Khedar is a technology development and AI agency. Our foundation is 20 years of overall technology experience in software, infrastructure and product delivery, which we now apply to blockchain, trading platforms, business software and AI automation.</p>
+  </div></section>
+  <section class="section" style="padding-top:1rem"><div class="wrap grid g2">
+    <div class="reveal"><h2>What we do</h2><p>We take products from concept to production: architecture, smart contracts, back-end services, web and mobile interfaces, integrations and the operational tooling that keeps them running.</p><p>We are comfortable at the boundary between new and established technology, connecting on-chain systems to payment rails, ERPs or customer support tools, and adding AI to workflows that already exist.</p></div>
+    <div class="reveal"><h2>How we think about experience</h2><p>Our 20 years refers to overall technology experience. Blockchain and generative AI are much younger fields, and we do not claim otherwise.</p><p>What carries across is engineering discipline: designing for failure, testing what matters, documenting decisions and supporting systems after launch.</p></div>
+  </div></section>
+  <section class="section" style="padding-top:0"><div class="wrap">
+    <p class="eyebrow">Principles</p><h2>How we work</h2>
+    <div class="grid g3">{principles.map(([t, d]) => <div class="glass card reveal"><h3>{t}</h3><p>{d}</p></div>)}</div>
+  </div></section>
+  <CtaBand />
+</Base>
