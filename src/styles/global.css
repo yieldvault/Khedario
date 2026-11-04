@@ -1,5 +1,4 @@
-@import '@fontsource-variable/sora/wght.css';
-@import '@fontsource-variable/inter/wght.css';
+@import '@fontsource-variable/manrope/wght.css';
 @import '@fontsource/jetbrains-mono/latin-500.css';
 :root,:root[data-theme=gold]{
   --bg:#070605;--bg2:#0e0c0a;--graphite:#1a1714;--s0:14,12,10;--s1:30,26,22;
@@ -19,7 +18,7 @@
   --line:rgba(var(--ln),.14);--line-hi:rgba(var(--a1),.45);
   
   --glass:rgba(var(--s1),.55);--r:16px;--max:1200px;
-  --display:'Sora Variable',system-ui,sans-serif;--body:'Inter Variable',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;--ease:cubic-bezier(.2,.8,.2,1);
+  --display:'Manrope Variable',system-ui,sans-serif;--body:'Manrope Variable',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;--ease:cubic-bezier(.2,.8,.2,1);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -31,7 +30,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
  linear-gradient(180deg,var(--bg),var(--bg2))}
 h1,h2,h3,h4{font-family:var(--display);color:var(--text);line-height:1.06;letter-spacing:-.035em;margin:0 0 .55em;font-weight:600;text-wrap:balance}
 h1{font-size:clamp(2.5rem,7vw,5.6rem);font-weight:600;letter-spacing:-.045em;line-height:1}h2{font-size:clamp(2rem,4.4vw,3.4rem)}h3{font-size:1.2rem;font-weight:600;letter-spacing:-.02em;line-height:1.25}
-body{font-feature-settings:'cv11','ss01';-webkit-font-smoothing:antialiased}
+body{-webkit-font-smoothing:antialiased}
 ::selection{background:rgba(var(--a1),.3);color:#fff}
 body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;background-image:linear-gradient(rgba(var(--ln),.035) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--ln),.035) 1px,transparent 1px);background-size:72px 72px;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0,#000,transparent 75%);mask-image:radial-gradient(ellipse 80% 60% at 50% 0,#000,transparent 75%)}
 p{margin:0 0 1em;max-width:68ch}

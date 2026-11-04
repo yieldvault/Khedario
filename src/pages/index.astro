@@ -1,142 +1,145 @@
 ---
 import Base from '../layouts/Base.astro';
-import ServiceCards from '../components/ServiceCards.astro';
-import CtaBand from '../components/CtaBand.astro';
-import Icon from '../components/Icon.astro';
 import { site } from '../config/site';
-import { services } from '../data/services';
-const featured = [
-  { t: 'Blockchain', i: 'chain', d: 'Contracts, indexers and custody-aware architecture for products that need verifiable state.', l: '/services/blockchain-development' },
-  { t: 'Trading Platforms', i: 'cex', d: 'Decentralized and centralized exchange software: matching, ledgers, routing and risk controls.', l: '/services/centralized-exchange-development' },
-  { t: 'Business Software', i: 'saas', d: 'SaaS products, commerce portals and internal tools built for long-term operation.', l: '/services/saas-development' },
-  { t: 'AI Automation', i: 'ai', d: 'Assistants and workflows grounded in your data, measured against real outcomes.', l: '/services/ai-agency-and-business-automation' },
-];
-const why = [
-  { t: 'Engineering depth across eras', i: 'layers', d: 'Two decades of building software means we have seen technologies rise and fade. We choose tools for fit, not fashion.' },
-  { t: 'Honest about limits', i: 'eye', d: 'We tell you what code can solve and what needs lawyers, auditors, custodians or liquidity, before you spend on it.' },
-  { t: 'Security as process', i: 'shield', d: 'Threat models, tests, reviews and recovery plans are part of the build, not an add-on.' },
-  { t: 'You own everything', i: 'handshake', d: 'Code lives in your repositories and runs in your accounts. Handover includes documentation your team can use.' },
-];
-const steps = [
-  ['Discover', 'We map goals, users, constraints and the dependencies outside the code.'],
-  ['Define', 'Scope, architecture and risks are written down and agreed before building.'],
-  ['Design', 'Interfaces and data flows are prototyped and tested with real scenarios.'],
-  ['Build', 'Short iterations with working software, automated tests and visible progress.'],
-  ['Verify', 'Security review, load and acceptance testing, and preparation for external audits where relevant.'],
-  ['Launch & Operate', 'Staged release, monitoring, runbooks and ongoing support as needed.'],
-];
+import { svc, why, steps } from '../data/home';
+const n = (i: number) => String(i + 1).padStart(2, '0');
+const email = site.contact.email;
 ---
-<Base title="Khedar | Blockchain, Trading Platforms, SaaS & AI Development" description={site.description}>
-  <section class="hero">
+<Base title="Khedar | Blockchain, AI & Custom Software Development" description="Build smart contracts, DEX and CEX platforms, crypto wallets, SaaS products, shopping portals, and AI automation with 20 years of technology experience.">
+  <section class="hero" id="home">
     <div class="lc-blob" aria-hidden="true"><i></i><i></i></div>
     <div class="wrap hero-in">
-      <div class="lc-panel">
-        <p class="eyebrow">Technology development & AI agency</p>
-        <h1>We engineer the systems <span class="metal">serious products</span> run on.</h1>
-        <p class="lead">Khedar designs and builds blockchain platforms, exchanges, wallets, SaaS products, marketplaces and AI automation, with the rigour that real users and real value demand.</p>
-        <div class="ctas"><a class="btn btn-primary" href="/contact">Discuss Your Project</a><a class="btn btn-ghost" href="/services">Explore Services</a></div>
+      <div class="lc-panel reveal">
+        <p class="eyebrow">Khedar · Technology & AI Agency</p>
+        <h1>Engineering <span class="metal">Tomorrow’s</span> Digital Businesses.</h1>
+        <p class="sub">Blockchain. AI. Software. Commerce.<br />Built around your ambition.</p>
+        <p class="lead">Turn complex ideas into powerful digital products. Khedar designs and develops smart contracts, exchanges, wallets, SaaS platforms, shopping portals, and AI-powered business systems—from initial strategy to launch and ongoing evolution.</p>
+        <p class="badge"><b>20</b> Years of Technology Experience. A Future-Focused Approach.</p>
+        <div class="ctas"><a class="btn btn-primary" href="#contact">Discuss Your Project</a><a class="btn btn-ghost" href="#services">Explore Our Services</a></div>
       </div>
     </div>
   </section>
-  <div class="marquee" aria-hidden="true"><div class="mq-track">{[0,1].map(() => <span>{services.map((x) => <><b>{x.title}</b><i>✦</i></>)}</span>)}</div></div>
+  <div class="marquee" aria-hidden="true"><div class="mq-track">{[0,1].map(() => <span>{svc.map((x) => <><b>{x[0]}</b><i>✦</i></>)}</span>)}</div></div>
 
-  <section class="exp" aria-label="Experience">
-    <div class="wrap exp-in reveal">
-      <p class="num"><span>20</span> Years</p>
-      <div><h2>20 Years of Technology Experience</h2><p>Our experience spans two decades of software, infrastructure and product engineering. Blockchain and generative AI are recent fields; we bring that broader engineering discipline to them.</p></div>
+  <section class="section"><div class="wrap prose reveal">
+    <p class="eyebrow">Introduction</p>
+    <h2>Your Vision Deserves More Than a Development Vendor.</h2>
+    <p class="lead">It needs a technology partner who understands how architecture, user experience, security, and business operations work together.</p>
+    <blockquote>We connect product strategy with hands-on engineering to help you build platforms people can use, businesses can operate, and teams can grow.</blockquote>
+    <p>Whether you are launching a new venture or modernizing an established business, we turn your requirements into a clear roadmap and a working product.</p>
+  </div></section>
+
+  <section class="section" id="services"><div class="wrap">
+    <div class="prose reveal"><p class="eyebrow">Our Services</p><h2>Complex Technology. <span class="metal">Clear Business Purpose.</span></h2></div>
+    <div class="svc">
+      {svc.map(([t, h, d, caps], i) => (
+        <article class="glass card sv reveal" style={`transition-delay:${(i % 2) * 80}ms`}>
+          <p class="idx">{n(i)}</p>
+          <h3>{t}</h3>
+          <p class="hl2">{h}</p>
+          <p>{d}</p>
+          <details><summary>Capabilities</summary><ul class="list">{caps.map((c) => <li>{c}</li>)}</ul></details>
+        </article>
+      ))}
     </div>
-  </section>
+  </div></section>
 
-  <section class="section">
-    <div class="wrap intro reveal">
-      <p class="eyebrow">Who we are</p>
-      <h2>A development partner for technically demanding products.</h2>
-      <p class="lead">Khedar works with founders and businesses who need more than a website: platforms that move value, process transactions, automate decisions or serve customers at scale.</p>
-      <p>We cover the full path from architecture to operation, and we are clear about where specialist partners such as auditors, custodians, payment providers and legal advisers are required.</p>
-    </div>
-  </section>
+  <section class="section"><div class="wrap">
+    <div class="prose reveal"><p class="eyebrow">Why Work With Us</p><h2>Experience That Shapes Better Decisions.</h2></div>
+    <div class="why">{why.map(([t, d], i) => <div class={`glass card reveal${i === 0 ? ' big' : ''}`}>{i === 0 && <p class="num metal">20</p>}<h3>{t}</h3><p>{d}</p></div>)}</div>
+  </div></section>
 
-  <section class="section" style="padding-top:0">
-    <div class="wrap">
-      <p class="eyebrow">Services</p><h2 class="reveal">Eight disciplines, one engineering standard.</h2>
-      <ServiceCards />
-    </div>
-  </section>
+  <section class="section" id="approach"><div class="wrap">
+    <div class="prose reveal"><p class="eyebrow">Our Approach</p><h2>From First Conversation to Working Product.</h2></div>
+    <ol class="tl">{steps.map(([t, d], i) => <li class="reveal"><span class="dot">{n(i)}</span><div><h3>{t}</h3><p>{d}</p></div></li>)}</ol>
+  </div></section>
 
-  <section class="section feat">
-    <div class="wrap">
-      <p class="eyebrow">Featured capabilities</p><h2 class="reveal">Where we go deepest.</h2>
-      <div class="grid g2">
-        {featured.map((f) => (
-          <article class="glass card reveal fcard">
-            <div class="icon"><Icon name={f.i} /></div>
-            <h3><a class="stretch" href={f.l}>{f.t}</a></h3><p>{f.d}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
+  <section class="section" id="about"><div class="wrap prose reveal">
+    <p class="eyebrow">About</p>
+    <h2>Two Decades of Experience. <span class="metal">Focused on What Comes Next.</span></h2>
+    <p class="lead">Khedar is a technology development and AI agency helping businesses create their next generation of digital products.</p>
+    <p>With 20 years of technology experience, we combine practical software engineering with modern blockchain, AI, SaaS, and commerce capabilities.</p>
+    <p>Our purpose is straightforward: understand what your business needs, make the technology understandable, and build a product that serves that purpose.</p>
+    <blockquote>We believe the strongest digital businesses start with clear thinking—and grow through disciplined execution.</blockquote>
+  </div></section>
 
-  <section class="section">
-    <div class="wrap">
-      <p class="eyebrow">Why work with us</p><h2 class="reveal">Built to be trusted, not just shipped.</h2>
-      <div class="grid g4">
-        {why.map((w) => <div class="why reveal"><div class="icon"><Icon name={w.i} /></div><h3>{w.t}</h3><p>{w.d}</p></div>)}
-      </div>
-    </div>
-  </section>
+  <section class="section"><div class="wrap"><div class="glass cta-band reveal">
+    <h2>What Will You Build <span class="metal">Next?</span></h2>
+    <p class="lead">An exchange. A wallet. A SaaS platform. An intelligent marketplace. An AI-powered operation.</p>
+    <p>Let’s turn your next idea into a clear development plan.</p>
+    <a class="btn btn-primary" href="#contact">Start Your Project</a>
+    <p class="support">Tell us what you want to build, who it serves, and what success looks like.</p>
+  </div></div></section>
 
-  <section class="section">
-    <div class="wrap">
-      <p class="eyebrow">Process</p><h2 class="reveal">Six steps from idea to operation.</h2>
-      <ol class="steps">
-        {steps.map(([t, d], i) => <li class="glass reveal"><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{t}</h3><p>{d}</p></li>)}
-      </ol>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap about reveal">
-      <div><p class="eyebrow">About Khedar</p><h2>Long experience. Current technology. Plain answers.</h2></div>
-      <div>
-        <p>Khedar was formed to give ambitious projects access to experienced engineering across blockchain, trading systems, business software and AI. We work as an extension of your team, document our decisions, and leave you with systems you can run.</p>
-        <a class="btn btn-ghost" href="/about">More about us</a>
-      </div>
-    </div>
-  </section>
-
-  <CtaBand title="Let's scope your project properly." text="Share your goals and constraints. We will respond with clarifying questions, a suggested approach and an outline of what it would take, with no obligation." />
+  <section class="section" id="contact"><div class="wrap form-wrap">
+    <div class="prose reveal"><p class="eyebrow">Contact</p><h2>Send Project Enquiry</h2><p>Tell us what you want to build, who it serves, and what success looks like.</p>
+      <p class="notice" role="note">Online submission is not connected yet. Pressing the button opens your email app with your enquiry prefilled{email ? '.' : ' (business email to be added: [Business Email]).'}</p></div>
+    <form class="glass form reveal" id="enq" data-email={email} novalidate>
+      <label>Name<input name="name" required autocomplete="name" /></label>
+      <label>Business email<input name="email" type="email" required autocomplete="email" /></label>
+      <label>Company name<input name="company" autocomplete="organization" /></label>
+      <label>Service required<select name="service" required><option value="">Select a service</option>{svc.map(([t]) => <option>{t}</option>)}</select></label>
+      <label class="full">Project overview<textarea name="overview" rows="5" required></textarea></label>
+      <label>Estimated budget <small>(optional)</small><input name="budget" /></label>
+      <label>Target timeline <small>(optional)</small><input name="timeline" /></label>
+      <button class="btn btn-primary full" type="submit">Send Project Enquiry</button>
+      <p class="full msg" aria-live="polite"></p>
+    </form>
+  </div></section>
 </Base>
+<script>
+  const f = document.getElementById('enq') as HTMLFormElement;
+  f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const m = f.querySelector('.msg')!;
+    if (!f.checkValidity()) { f.reportValidity(); return; }
+    const d = new FormData(f); const to = f.dataset.email || '';
+    const body = ['Name', 'name', 'Business email', 'email', 'Company', 'company', 'Service', 'service', 'Budget', 'budget', 'Timeline', 'timeline', 'Overview', 'overview']
+      .reduce((a, _, i, arr) => i % 2 ? a : a + `${arr[i]}: ${d.get(arr[i + 1]) || '-'}\n`, '');
+    if (!to) { m.textContent = 'Thanks! The business email ([Business Email]) is not configured yet, so the enquiry cannot be sent from this preview.'; return; }
+    location.href = `mailto:${to}?subject=${encodeURIComponent('Project enquiry: ' + d.get('service'))}&body=${encodeURIComponent(body)}`;
+  });
+</script>
 <style>
-.hero{padding:clamp(3.5rem,9vw,7.5rem) 0 clamp(3rem,6vw,5rem);position:relative;isolation:isolate;overflow:clip}
-.hero::before{content:"";position:absolute;z-index:-1;width:min(70rem,140vw);aspect-ratio:1;left:50%;top:-30rem;transform:translateX(-50%);background:conic-gradient(from 200deg,rgba(var(--a1),.0),rgba(var(--a1),.22),rgba(var(--a2),.14),rgba(var(--a2),.12),rgba(var(--a1),0));filter:blur(80px);border-radius:50%;pointer-events:none;animation:spin 30s linear infinite}
-@keyframes spin{to{transform:translateX(-50%) rotate(360deg)}}
-.hero h1{font-size:clamp(2.4rem,5.3vw,4.8rem)}
-.hero{min-height:min(88vh,820px);display:flex;align-items:center}.hero>.wrap{width:min(100% - 2.5rem,var(--max))}
-.hero-in{display:block}.lc-panel{max-width:46rem}
-.hero::before{display:none}
-.marquee{border-block:1px solid var(--line);overflow:hidden;padding:1.1rem 0;background:rgba(var(--s0),.5);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
-.mq-track{display:flex;width:max-content;animation:mq 50s linear infinite}
-.mq-track span{display:flex;align-items:center;gap:2rem;padding-right:2rem;white-space:nowrap}
-.mq-track b{font:500 clamp(1rem,1.6vw,1.3rem) var(--display);color:var(--soft);letter-spacing:-.02em}.mq-track i{color:var(--cyan);font-style:normal;font-size:.8rem}
+.hero{position:relative;isolation:isolate;min-height:88vh;display:flex;align-items:center;padding:3rem 0;overflow:clip}
+.hero-in .lc-panel{max-width:46rem}
+.sub{font-size:clamp(1.3rem,2.4vw,1.75rem);color:var(--text);font-weight:600;line-height:1.35;letter-spacing:-.02em}
+.badge{display:inline-flex;gap:.6rem;align-items:center;font-size:.95rem;color:var(--soft);border:1px solid rgba(255,214,102,.3);border-radius:999px;padding:.45rem 1rem}
+.badge b{font-size:1.2rem;color:var(--cyan)}
+.ctas{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:.6rem}
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:1rem 0;white-space:nowrap}
+.mq-track{display:inline-flex;animation:mq 50s linear infinite}.mq-track span{display:inline-flex;gap:1.5rem;padding-right:1.5rem;align-items:center}
+.mq-track b{color:var(--text);font-weight:600}.mq-track i{color:var(--cyan);font-style:normal}
 @keyframes mq{to{transform:translateX(-50%)}}
-@media (max-width:900px){.hero-in{grid-template-columns:1fr}}
-.hl{background:linear-gradient(100deg,var(--acc-hi),var(--cyan) 40%,var(--emerald));font-style:normal;-webkit-background-clip:text;background-clip:text;color:transparent}
-.ctas{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
-.exp{border-block:1px solid var(--line);background:rgba(var(--s0),.6)}
-.exp-in{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center;padding:3rem 0}
-@media (max-width:700px){.exp-in{grid-template-columns:1fr;gap:1rem}}
-.num{font:500 1.2rem var(--display);color:var(--muted);margin:0;display:flex;align-items:baseline;gap:.6rem}
-.num span{font-size:clamp(5rem,12vw,8.5rem);font-weight:200;letter-spacing:-.06em;-webkit-text-stroke:0!important;background:linear-gradient(180deg,#fff,rgba(165,243,252,.35));-webkit-background-clip:text;background-clip:text;color:var(--text);line-height:1;-webkit-text-stroke:1px var(--cyan);color:transparent}
-.exp h2{font-size:clamp(1.4rem,2.6vw,1.9rem)}
-.exp p{margin:0}
-.intro{max-width:52rem}
-.fcard{padding:2rem}
-.feat .g2{grid-template-columns:repeat(2,1fr)}@media (max-width:700px){.feat .g2{grid-template-columns:1fr}}
-.why h3{font-size:1.1rem}.why p{font-size:.97rem}
-.steps{list-style:none;padding:0;margin:0;display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))}
-.steps li{padding:1.6rem}.steps p{margin:0;font-size:.97rem}
-.n{font:500 .8rem var(--mono);color:var(--emerald);letter-spacing:.1em;display:block;margin-bottom:.8rem}
-.about{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
-@media (max-width:800px){.about{grid-template-columns:1fr;gap:0}}
+.prose{max-width:46rem}
+.prose p,.section p{font-size:1.125rem;line-height:1.75}
+.lead{font-size:clamp(1.2rem,2vw,1.4rem)!important;color:var(--soft)}
+blockquote{margin:2rem 0;padding:.4rem 0 .4rem 1.6rem;border-left:3px solid var(--cyan);font-size:clamp(1.2rem,2vw,1.4rem);line-height:1.6;color:var(--text)}
+.svc{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,30rem),1fr));margin-top:2rem}
+.idx{font:500 .85rem var(--mono);color:var(--cyan);letter-spacing:.14em;margin-bottom:.8rem!important}
+.sv h3{font-size:1.5rem}.hl2{color:var(--text)!important;font-weight:600;margin-bottom:.8rem!important}
+.sv p{margin-bottom:1rem!important}
+details{border-top:1px solid var(--line);padding-top:1rem;margin-top:1.2rem}
+summary{cursor:pointer;color:var(--cyan);font-weight:600;list-style:none;display:flex;justify-content:space-between;min-height:44px;align-items:center}
+summary::-webkit-details-marker{display:none}summary::after{content:"+";font-size:1.4rem}details[open] summary::after{content:"–"}
+details .list{margin-top:.8rem}
+.why{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));margin-top:2rem}
+.why .big{grid-row:span 2}.num{font-size:5.5rem;font-weight:800;line-height:1;margin:0 0 .5rem!important;letter-spacing:-.05em}
+.why h3{font-size:1.25rem}
+.tl{list-style:none;padding:0;margin:2.5rem 0 0;position:relative;display:grid;gap:2rem;max-width:46rem}
+.tl::before{content:"";position:absolute;left:1.6rem;top:0;bottom:0;width:1px;background:linear-gradient(var(--cyan),transparent)}
+.tl li{display:flex;gap:1.5rem;align-items:flex-start}
+.dot{flex:0 0 3.2rem;height:3.2rem;border-radius:50%;display:grid;place-items:center;font:500 .9rem var(--mono);color:var(--on-acc);background:var(--grad);box-shadow:0 0 24px -4px rgba(var(--a1),.6);position:relative}
+.tl h3{font-size:1.35rem;margin-bottom:.3rem}.tl p{margin:0}
+.cta-band{display:flex;flex-direction:column;align-items:center}.support{font-size:1rem!important;margin-top:1rem}
+.form-wrap{display:grid;gap:2.5rem;grid-template-columns:1fr 1.3fr;align-items:start}
+@media (max-width:900px){.form-wrap{grid-template-columns:1fr}}
+.notice{border:1px dashed rgba(var(--a1),.5);border-radius:12px;padding:1rem;font-size:1rem!important;color:var(--soft)}
+.form{padding:clamp(1.25rem,3vw,2rem);display:grid;gap:1.1rem;grid-template-columns:1fr 1fr}
+@media (max-width:600px){.form{grid-template-columns:1fr}}
+.form label{display:grid;gap:.4rem;color:var(--text);font-weight:600;font-size:.95rem}.form small{color:var(--muted);font-weight:400}
+.form .full{grid-column:1/-1}
+input,select,textarea{font:inherit;font-weight:400;font-size:1rem;color:var(--text);background:rgba(0,0,0,.35);border:1px solid var(--line-hi);border-radius:10px;padding:.8rem .9rem;min-height:48px;width:100%}
+select option{background:#111}
+.msg{margin:0;font-size:.95rem!important;color:var(--cyan)}
 </style>
