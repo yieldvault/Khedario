@@ -73,7 +73,7 @@ const email = site.contact.email;
 
   <section class="section" id="contact"><div class="wrap form-wrap">
     <div class="prose reveal"><p class="eyebrow">Contact</p><h2>Send Project Enquiry</h2><p>Tell us what you want to build, who it serves, and what success looks like.</p>
-      <p class="notice" role="note">Online submission is not connected yet. Pressing the button opens your email app with your enquiry prefilled{email ? '.' : ' (business email to be added: [Business Email]).'}</p></div>
+      <p class="notice" role="note">Pressing the button opens your email app with your enquiry prefilled to <a href={`mailto:${email}`}>{email}</a>. Prefer chat? <a href="https://wa.me/917827536379" target="_blank" rel="noopener">WhatsApp +91 78275 36379</a>.</p></div>
     <form class="glass form reveal" id="enq" data-email={email} novalidate>
       <label>Name<input name="name" required autocomplete="name" /></label>
       <label>Business email<input name="email" type="email" required autocomplete="email" /></label>
@@ -96,7 +96,7 @@ const email = site.contact.email;
     const d = new FormData(f); const to = f.dataset.email || '';
     const body = ['Name', 'name', 'Business email', 'email', 'Company', 'company', 'Service', 'service', 'Budget', 'budget', 'Timeline', 'timeline', 'Overview', 'overview']
       .reduce((a, _, i, arr) => i % 2 ? a : a + `${arr[i]}: ${d.get(arr[i + 1]) || '-'}\n`, '');
-    if (!to) { m.textContent = 'Thanks! The business email ([Business Email]) is not configured yet, so the enquiry cannot be sent from this preview.'; return; }
+    if (!to) { m.textContent = 'Email is not configured.'; return; }
     location.href = `mailto:${to}?subject=${encodeURIComponent('Project enquiry: ' + d.get('service'))}&body=${encodeURIComponent(body)}`;
   });
 </script>

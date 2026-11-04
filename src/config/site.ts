@@ -15,7 +15,7 @@ export const site = {
     'Khedar is a technology development and AI agency building blockchain systems, smart contracts, exchanges, wallets, SaaS products, marketplaces and AI automation, backed by 20 years of overall technology experience.',
   experienceYears: 20,
   contact: {
-    email: v(env.PUBLIC_CONTACT_EMAIL) || '', // WhatsApp business
+    email: v(env.PUBLIC_CONTACT_EMAIL) || 'khedar.space@proton.me',
     whatsapp: v(env.PUBLIC_WHATSAPP_NUMBER).replace(/\D/g, '') || '917827536379', // WhatsApp business
     address: '', // WhatsApp business
   },

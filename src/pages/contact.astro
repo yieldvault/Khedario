@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import { site } from '../config/site';
 import { services } from '../data/services';
 const { email, whatsapp } = site.contact;
-const endpoint = site.formEndpoint;
 ---
 <Base title="Contact" description="Contact Khedar to discuss a blockchain, exchange, wallet, SaaS, marketplace or AI automation project.">
   <section class="page-hero"><div class="wrap">
@@ -12,12 +11,8 @@ const endpoint = site.formEndpoint;
     <p class="lead">Tell us what you want to build. A useful first message covers the goal, the current state, any deadlines, and the constraints we should know about.</p>
   </div></section>
   <section class="section" style="padding-top:1rem"><div class="wrap layout">
-    <form id="enquiry" class="glass form" novalidate data-endpoint={endpoint} aria-describedby={endpoint ? undefined : 'unavail'}>
-      {!endpoint && (
-        <div id="unavail" class="note warn" role="note">
-          <strong>Online submission is not available yet.</strong> The form endpoint has not been configured, so messages cannot be sent from this page. {email ? <>Please email <a href={`mailto:${email}`}>{email}</a> instead.</> : 'Please check back soon.'}
-        </div>
-      )}
+    <form id="enquiry" class="glass form" novalidate data-email={email} aria-describedby="unavail">
+      <div id="unavail" class="note" role="note">Sending opens your email app with your enquiry prefilled to <a href={`mailto:${email}`}>{email}</a>. You can also <a href="https://wa.me/917827536379" target="_blank" rel="noopener">WhatsApp us</a>.</div>
       <div class="row">
         <div class="f"><label for="name">Name <span aria-hidden="true">*</span></label><input id="name" name="name" autocomplete="name" required aria-required="true" aria-describedby="name-err" /><p class="err" id="name-err"></p></div>
         <div class="f"><label for="email">Email <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required aria-required="true" aria-describedby="email-err" /><p class="err" id="email-err"></p></div>
@@ -77,8 +72,7 @@ button[disabled]{opacity:.65;cursor:progress}
   const form = document.getElementById('enquiry') as HTMLFormElement;
   const status = document.getElementById('status')!;
   const btn = document.getElementById('submit') as HTMLButtonElement;
-  const endpoint = form.dataset.endpoint || '';
-  const sel = form.querySelector<HTMLSelectElement>('#service')!;
+    const sel = form.querySelector<HTMLSelectElement>('#service')!;
   const pre = new URLSearchParams(location.search).get('service');
   if (pre && [...sel.options].some((o) => o.value === pre)) sel.value = pre;
 
@@ -104,14 +98,9 @@ button[disabled]{opacity:.65;cursor:progress}
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!validate()) { show('bad', 'Please correct the highlighted fields.'); return; }
-    if (!endpoint) { show('warn', '<strong>Not sent.</strong> Online submission is not configured yet, so your message was not delivered. Nothing has been stored.'); return; }
-    btn.disabled = true; btn.textContent = 'Sending…'; show('', 'Sending your enquiry…');
-    try {
-      const res = await fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-      if (!res.ok) throw new Error(String(res.status));
-      form.reset(); show('ok', '<strong>Thank you.</strong> Your enquiry was received. We will reply by email.');
-    } catch {
-      show('bad', '<strong>Your enquiry could not be sent.</strong> Please check your connection and try again.');
-    } finally { btn.disabled = false; btn.textContent = 'Send enquiry'; }
+    const d = new FormData(form); const to = form.dataset.email || 'khedar.space@proton.me';
+    const body = `Name: ${d.get('name')}\nEmail: ${d.get('email')}\nService: ${d.get('service')}\n\nMessage:\n${d.get('message')}`;
+    location.href = `mailto:${to}?subject=${encodeURIComponent('Project enquiry: ' + d.get('service'))}&body=${encodeURIComponent(body)}`;
+    show('ok', `Your email app should open with the enquiry prefilled. If it doesn't, email <a href="mailto:${to}">${to}</a> or WhatsApp +91 78275 36379.`);
   });
 </script>
