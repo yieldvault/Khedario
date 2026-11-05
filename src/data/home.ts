@@ -10,6 +10,7 @@ export const svc = [
 ] as const;
 export const why = [
  ['20 Years of Technology Experience','A long-term perspective on software development, changing platforms, and the practical demands of building digital businesses.'],
+ ['Fastest Delivery','Rapid, reliable delivery timelines so you can move from plan to working product with clear milestones and dependable execution.'],
  ['Connected Product Thinking','Your website, application, blockchain components, AI workflows, and operational tools should work as one coherent system.'],
  ['Security-Conscious Engineering','Permissions, sensitive data, financial flows, and failure scenarios are considered throughout development.'],
  ['Clear Scope. Visible Progress.','Defined deliverables, reviewable milestones, and direct communication help you understand what is being built and why.'],
