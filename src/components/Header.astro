@@ -1,6 +1,17 @@
 ---
 import { site } from '../config/site';
-const links = [ ['Home', '/'], ['Services', '/#services'], ['Our Approach', '/#approach'], ['About', '/#about'], ['Contact', '/#contact'] ];
+const links = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Our Approach', href: '/#approach' },
+  { label: 'About', href: '/#about' },
+  { label: 'Contact', href: '/#contact' },
+  {
+    label: 'Auto Trading Agent',
+    href: 'https://auraquantagents.online/?ref=0xa8772e8cedd691f79c98f62b091fd60da5741a12',
+    external: true,
+  },
+] as const;
 const cur = Astro.url.pathname.replace(/\/$/, '');
 ---
 <header class="hdr">
@@ -14,7 +25,16 @@ const cur = Astro.url.pathname.replace(/\/$/, '');
     </button>
     <nav id="nav-menu" class="nav" aria-label="Primary">
       <ul>
-        {links.map(([l, h]) => <li><a href={h} aria-current={h === '/' && cur === '' ? 'page' : undefined}>{l}</a></li>)}
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              aria-current={!('external' in link && link.external) && link.href === '/' && cur === '' ? 'page' : undefined}
+              target={'external' in link && link.external ? '_blank' : undefined}
+              rel={'external' in link && link.external ? 'noopener noreferrer' : undefined}
+            >{link.label}</a>
+          </li>
+        ))}
       </ul>
       <a href="/#contact" class="btn btn-primary">Discuss Your Project</a>
     </nav>
